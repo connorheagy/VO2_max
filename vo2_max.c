@@ -2,37 +2,37 @@
 #include <stdio.h>
 
 
-//preconditions: takes in in minutes (integer) and seconds (integer)
-//postconditions: returns an floating-point number which indicates the user's VO2 max value
+//preconditions: takes in minutes (integer) and seconds (integer)
+//postconditions: returns a floating-point number which indicates the user's VO2 max value
 float vo2_form (float mile_time){
   double velocity = 1609.34/mile_time;
   double vo2_max = (-4.60 + 0.182258 * velocity + 0.000104 * pow(velocity, 2))/(0.8 + 0.1894393 * exp(-0.012778 * mile_time) + 0.2989558 * exp(-0.1932605 * mile_time));
   return vo2_max;
-}
+} // vo2_form(mile_time)
 
 //preconditions: takes in the maximum heart rate (an integer), and the percentage of the max heart rate as an integer
-//postconditions: returns the 
+//postconditions: returns the pace per mile in which the effort of the exercise corresponds
 float pace_calculate (int percentage, float mile_time) {
   float vVO2max = 1609.34/mile_time;
   float ppm = 1609.34/((percentage * 0.1) * vVO2max);
   
   return ppm;
-}
+} // pace_calculate(percentage, mile_time)
 
-//preconditions:
-//postconditions:
+//preconditions: takes in the percentage of the max heart rate (integer) and the individual's max heart rate.   
+//postconditions: returns the heart rate to which the effort of the exercise corresponds. 
 int hr_calculate (int percentage, int max_HR) {
   int hr_zone = max_HR * (percentage * 0.1);
  
   return hr_zone;
-}
+} // hr_calculate(percentage, max_HR)
 
 int main(void){
 
   float mile_time, mins, secs, decimal_num;
   int max_hr, age; 
   
-  //prompts user for their age
+  //prompts the user for their age
   printf("Enter Age: ");
   scanf("%d", &age);
   
